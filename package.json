@@ -1,0 +1,16 @@
+{
+  "name": "aoc_2019",
+  "version": "1.0.0",
+  "description": "Advent of Code 2019 - Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha day-*/**/test.js"
+  },
+  "author": "JHahn",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.2",
+    "prettier": "^1.19.1"
+  }
+}
