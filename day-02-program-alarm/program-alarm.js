@@ -1,5 +1,3 @@
-const _ = require("lodash");
-
 const programAlarm = input => {
   const opCodes = input
     .split(",")
