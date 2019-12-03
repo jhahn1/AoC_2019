@@ -15,27 +15,28 @@ const crossedWires = input => {
       originCoordinate = firstWireCoordinates[firstWireCoordinates.length - 1]
         .split(",")
         .map(x => parseInt(x));
+    console.log("Direction = ", instruction);
 
     if (direction === "R") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let x = originCoordinate[0] + i,
           y = originCoordinate[1];
         firstWireCoordinates.push(`${x},${y}`);
       }
     } else if (direction === "L") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let x = originCoordinate[0] - i,
           y = originCoordinate[1];
         firstWireCoordinates.push(`${x},${y}`);
       }
     } else if (direction === "U") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let x = originCoordinate[0],
           y = originCoordinate[1] + i;
         firstWireCoordinates.push(`${x},${y}`);
       }
     } else if (direction === "D") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let x = originCoordinate[0],
           y = originCoordinate[1] - i;
         firstWireCoordinates.push(`${x},${y}`);
@@ -44,11 +45,12 @@ const crossedWires = input => {
   });
 
   _.forEach(secondWirePath, function(instruction) {
+    console.log("Second = ", instruction);
     const direction = instruction.substring(0, 1),
       distance = parseInt(instruction.substring(1, instruction.length));
 
     if (direction === "R") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let coordinate = [
           parseInt(secondWireLastCoordinate[0]) + i,
           parseInt(secondWireLastCoordinate[1])
@@ -63,7 +65,7 @@ const crossedWires = input => {
         secondWireLastCoordinate[1]
       ];
     } else if (direction === "L") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let coordinate = [
           parseInt(secondWireLastCoordinate[0]) - i,
           parseInt(secondWireLastCoordinate[1])
@@ -78,7 +80,7 @@ const crossedWires = input => {
         secondWireLastCoordinate[1]
       ];
     } else if (direction === "U") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let coordinate = [
           parseInt(secondWireLastCoordinate[0]),
           parseInt(secondWireLastCoordinate[1]) + i
@@ -93,7 +95,7 @@ const crossedWires = input => {
         secondWireLastCoordinate[1] + distance
       ];
     } else if (direction === "D") {
-      for (let i = 1; i < distance; i++) {
+      for (let i = 1; i <= distance; i++) {
         let coordinate = [
           parseInt(secondWireLastCoordinate[0]),
           parseInt(secondWireLastCoordinate[1]) - i
@@ -119,7 +121,7 @@ const crossedWires = input => {
     manhattanDistances.push(manhattanDistance);
   });
 
-  manhattanDistances.sort().reverse();
+  manhattanDistances.sort();
   return manhattanDistances[0];
 };
 
