@@ -4,30 +4,25 @@ const crossedWires = input => {
   const bothWirePaths = input.split("\n").map(x => x.trim());
   const firstWirePath = bothWirePaths[0].split(",").map(x => x.trim()),
     secondWirePath = bothWirePaths[1].split(",").map(x => x.trim());
-  let manhattanDistances = [],
-    pathIntersections = [];
+  let moveCount = [];
 
   const firstWireCoordinates = getWireCoordinates(firstWirePath, "First Wire");
-  const secondWireCoordinates = getWireCoordinates(secondWirePath, "Second Wire");
-  firstWireCoordinates.splice(0,1);
-  secondWireCoordinates.splice(0,1);
+  const secondWireCoordinates = getWireCoordinates(
+    secondWirePath,
+    "Second Wire"
+  );
 
-  _.forEach(firstWireCoordinates, function(coordinate) {
-    console.log('Searching wire paths for coordinate ', coordinate)
-    if (_.includes(secondWireCoordinates, coordinate)) {
-      pathIntersections.push(coordinate);
+  _.forEach(firstWireCoordinates, function(coordinate, index) {
+    console.log("Searching wire paths for coordinate ", coordinate);
+    let secondIndex = _.indexOf(secondWireCoordinates, coordinate);
+    if (secondIndex !== -1) {
+      let count = secondIndex + index;
+      moveCount.push(count);
     }
   });
-  _.forEach(pathIntersections, function(intersection) {
-    const intersectionInt = intersection.split(',').map(x => x.trim()).map(x => parseInt(x));
-    const manhattanDistance =
-      Math.abs(0 - intersectionInt[0]) +
-      Math.abs(0 - intersectionInt[1]);
-    manhattanDistances.push(manhattanDistance);
-  });
 
-  const sortedManhattanDistances = _.sortBy(manhattanDistances);
-  return sortedManhattanDistances[0];
+  const sortedMoveCount = _.sortBy(moveCount);
+  return sortedMoveCount[1];
 };
 
 const getWireCoordinates = (input, wire) => {
