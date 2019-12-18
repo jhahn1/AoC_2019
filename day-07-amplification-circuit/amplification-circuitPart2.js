@@ -1,32 +1,36 @@
 const intCodeComputer = require("../day-05-sunny-w-chance-of-asteroids/intCodeComputer");
 const _ = require("lodash");
 
-const amplificationCircuit = (input, phaseSettingSequence) => {
+const amplificationCircuitPart2 = (input, phaseSettingSequence) => {
   const allPhaseSettingSequences = phaseSettingSequence
     ? [phaseSettingSequence.join("")]
     : generateAllPermutationsOfPhaseSettingSequences();
   let maxThrusterSignal = 0;
+  let done = false;
 
-  _.forEach(allPhaseSettingSequences, function(pss) {
-    let inputInstruction = 0;
-    let phaseSettingSequence = pss.split("");
-    for (let i = 0; i < phaseSettingSequence.length; i++) {
-      let currentThrusterSignal = intCodeComputer(input, [
-        parseInt(phaseSettingSequence[i]),
-        inputInstruction
-      ]);
-      inputInstruction = currentThrusterSignal;
-    }
-    if (inputInstruction > maxThrusterSignal) {
-      maxThrusterSignal = inputInstruction;
-      console.log("Current max = ", maxThrusterSignal);
-    }
-  });
+  while(!done) {
+    _.forEach(allPhaseSettingSequences, function(pss) {
+      let inputInstruction = 0;
+      let phaseSettingSequence = pss.split("");
+      for (let i = 0; i < phaseSettingSequence.length; i++) {
+        let thrusterSignalResponse = intCodeComputer(input, [
+          parseInt(phaseSettingSequence[i]),
+          inputInstruction
+        ]);
+        inputInstruction = thrusterSignalResponse[0];
+        done = thrusterSignalResponse[1];
+      }
+      if (inputInstruction > maxThrusterSignal) {
+        maxThrusterSignal = inputInstruction;
+        console.log("Current max = ", maxThrusterSignal);
+      }
+    });
+  }
   return maxThrusterSignal;
 };
 
 function generateAllPermutationsOfPhaseSettingSequences() {
-  let originalPhaseSettingSequence = [0, 1, 2, 3, 4];
+  let originalPhaseSettingSequence = [5,6,7,8,9];
   let results = [[originalPhaseSettingSequence.shift()]];
 
   while (originalPhaseSettingSequence.length) {
@@ -48,4 +52,4 @@ function generateAllPermutationsOfPhaseSettingSequences() {
     .filter((el, idx, self) => self.indexOf(el) === idx);
 }
 
-module.exports = amplificationCircuit;
+module.exports = amplificationCircuitPart2;
