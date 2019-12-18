@@ -6,6 +6,7 @@ const intCodeComputer = (program, inputMap) => {
 
     while (instructionCount < program.length) {
         let instruction = program[instructionCount];
+        console.log('Instruction = ', instruction);
         if (instruction === 3) {
             program[program[instructionCount + 1]] = inputMap[0];
             inputMap.splice(0,1);

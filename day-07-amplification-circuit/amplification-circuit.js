@@ -1,21 +1,28 @@
 const intCodeComputer = require("../day-05-sunny-w-chance-of-asteroids/intCodeComputer");
-const _ = require('lodash');
+const _ = require("lodash");
 
-const amplificationCircuit = (input) => {
-  let inputInstruction = 0;
-  const allPhaseSettingSequences = generateAllPermutationsOfPhaseSettingSequences();
+const amplificationCircuit = (input, phaseSettingSequence) => {
+  const allPhaseSettingSequences = phaseSettingSequence
+    ? [phaseSettingSequence.join("")]
+    : generateAllPermutationsOfPhaseSettingSequences();
+  let maxThrusterSignal = 0;
 
   _.forEach(allPhaseSettingSequences, function(pss) {
-      let phaseSettingSequence = pss.split('');
-      for (let i = 0; i < phaseSettingSequence.length; i++) {
-          let currentThrusterSignal = intCodeComputer(input, [
-              phaseSettingSequence[i],
-              inputInstruction
-          ]);
-          inputInstruction = currentThrusterSignal;
-      }
-      return inputInstruction;
+    let inputInstruction = 0;
+    let phaseSettingSequence = pss.split("");
+    for (let i = 0; i < phaseSettingSequence.length; i++) {
+      let currentThrusterSignal = intCodeComputer(input, [
+        parseInt(phaseSettingSequence[i]),
+        inputInstruction
+      ]);
+      inputInstruction = currentThrusterSignal;
+    }
+    if (inputInstruction > maxThrusterSignal) {
+      maxThrusterSignal = inputInstruction;
+      console.log("Current max = ", maxThrusterSignal);
+    }
   });
+  return maxThrusterSignal;
 };
 
 function generateAllPermutationsOfPhaseSettingSequences() {
