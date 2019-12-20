@@ -1,6 +1,6 @@
 const assert = require('assert');
-const universalOrbitMapPart1 = require('./universal-orbit-map');
-const universalOrbitMapPart2 = require('./universal-orbit-map2');
+const universalOrbitMapPart1 = require('../day-06-universal-orbit-map/universal-orbit-map');
+const universalOrbitMapPart2 = require('../day-06-universal-orbit-map/universal-orbit-map2');
 
 describe('Day 6: Universal Orbit Map', () => {
     it('should pass test 1', () => {

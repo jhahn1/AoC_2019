@@ -1,6 +1,6 @@
 const assert = require("assert");
-const programAlarm = require("./program-alarm");
-const programAlarmPart2 = require("./program-alarm2");
+const programAlarm = require("../day-02-program-alarm/program-alarm");
+const programAlarmPart2 = require("../day-02-program-alarm/program-alarm2");
 
 describe("Day 2: Program Alarm", () => {
   it("should pass test 1", () => {

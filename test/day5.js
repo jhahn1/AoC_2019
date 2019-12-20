@@ -1,6 +1,6 @@
 const assert = require('assert');
-const sunnyAsteroidsPart1 = require('./sunnyAsteroidsPart1');
-const sunnyAsteroidsPart2 = require('./sunnyAsteroidsPart2');
+const sunnyAsteroidsPart1 = require('../day-05-sunny-w-chance-of-asteroids/sunnyAsteroidsPart1');
+const sunnyAsteroidsPart2 = require('../day-05-sunny-w-chance-of-asteroids/sunnyAsteroidsPart2');
 const sinon = require('sinon');
 
 describe('Day 5: Sunny with a Chance of Asteroids', () => {
